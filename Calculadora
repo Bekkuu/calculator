@@ -1,0 +1,72 @@
+function addFractions(frac1, frac2) {
+  // Suma dos fracciones y devuelve el resultado como una fracción
+  const num1 = frac1[0];
+  const den1 = frac1[1];
+  const num2 = frac2[0];
+  const den2 = frac2[1];
+  
+  const denComun = lcm(den1, den2); // Encuentra el mínimo común múltiplo de los denominadores
+  const num = num1 * denComun / den1 + num2 * denComun / den2; // Suma los numeradores, tomando el mismo denominador
+  const den = denComun; // Usa el mismo denominador para la fracción resultante
+  
+  return reduceFraction([num, den]); // Simplifica la fracción resultante
+}
+
+function subtractFractions(frac1, frac2) {
+  // Resta dos fracciones y devuelve el resultado como una fracción
+  const num1 = frac1[0];
+  const den1 = frac1[1];
+  const num2 = frac2[0];
+  const den2 = frac2[1];
+  
+  const denComun = lcm(den1, den2); // Encuentra el mínimo común múltiplo de los denominadores
+  const num = num1 * denComun / den1 - num2 * denComun / den2; // Resta los numeradores, tomando el mismo denominador
+  const den = denComun; // Usa el mismo denominador para la fracción resultante
+  
+  return reduceFraction([num, den]); // Simplifica la fracción resultante
+}
+
+function multiplyFractions(frac1, frac2) {
+  // Multiplica dos fracciones y devuelve el resultado como una fracción
+  const num1 = frac1[0];
+  const den1 = frac1[1];
+  const num2 = frac2[0];
+  const den2 = frac2[1];
+  
+  const num = num1 * num2; // Multiplica los numeradores
+  const den = den1 * den2; // Multiplica los denominadores
+  
+  return reduceFraction([num, den]); // Simplifica la fracción resultante
+}
+
+function divideFractions(frac1, frac2) {
+  // Divide dos fracciones y devuelve el resultado como una fracción
+  const num1 = frac1[0];
+  const den1 = frac1[1];
+  const num2 = frac2[0];
+  const den2 = frac2[1];
+  
+  const num = num1 * den2; // Multiplica el primer numerador por el segundo denominador
+  const den = den1 * num2; // Multiplica el primer denominador por el segundo numerador
+  
+  return reduceFraction([num, den]); // Simplifica la fracción resultante
+}
+
+function lcm(a, b) {
+  // Encuentra el mínimo común múltiplo de dos números
+  return a * b / gcd(a, b);
+}
+
+function gcd(a, b) {
+  // Encuentra el máximo común divisor de dos números (usando el algoritmo de Euclides)
+  if (b === 0) {
+    return a;
+  } else {
+    return gcd(b, a % b);
+  }
+}
+
+function reduceFraction(frac) {
+  // Simplifica una fracción
+  const num = frac[0];
+  const den = frac[1];
